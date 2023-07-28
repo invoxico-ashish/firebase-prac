@@ -1,16 +1,35 @@
-import React from "react";
-import { useFirebase } from "./Context/Firebase";
-// import SignUpUser from "./Pages/SignUpUser";
-// import SigninUser from "./Pages/SigninUser";
+import React, { useState, useEffect } from "react";
+import ContextSignin from "./components/ContextSignin";
+import SignInGoogle from "./components/SignInGoogle";
+import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
+import { app } from "./Firebase";
 
+const auth = getAuth(app);
 function App() {
-  const firebase = useFirebase();
-  console.log(firebase, "firebase");
-
+  const [user, setUser] = useState(null);
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        console.log("User Logged In");
+        setUser(user);
+      } else {
+        console.log("User is logged out");
+        setUser(null);
+      }
+    });
+  }, []);
+  if (user === null) {
+    return (
+      <>
+        <ContextSignin />
+        <SignInGoogle />
+      </>
+    );
+  }
   return (
     <div className="App">
-      {/* <SignUpUser /> */}
-      {/* <SigninUser /> */}
+      <h1>Hello {user.email} you are logged in</h1>
+      <button onClick={() => signOut(auth)}> Logout</button>
     </div>
   );
 }
