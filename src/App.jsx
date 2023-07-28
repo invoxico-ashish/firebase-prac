@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ContextSignin from "./components/ContextSignin";
 import SignInGoogle from "./components/SignInGoogle";
+import FileStore from "./components/FileStore";
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 import { app } from "./Firebase";
 
@@ -21,16 +22,19 @@ function App() {
   if (user === null) {
     return (
       <>
-        <ContextSignin />
-        <SignInGoogle />
+        {/* <ContextSignin /> */}
+        {/* <SignInGoogle /> */}
+        <FileStore />
       </>
     );
   }
   return (
-    <div className="App">
-      <h1>Hello {user.email} you are logged in</h1>
-      <button onClick={() => signOut(auth)}> Logout</button>
-    </div>
+    <>
+      <div className="App">
+        <h1>Hello {user.email} you are logged in</h1>
+        <button onClick={() => signOut(auth)}> Logout</button>
+      </div>
+    </>
   );
 }
 

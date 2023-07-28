@@ -15,7 +15,7 @@ function SignInGoogle() {
   const [password, setPassword] = useState("");
 
   const singupWithGoogle = () => {
-    signInWithPopup(auth, GoogleProvider );
+    signInWithPopup(auth, GoogleProvider);
   };
 
   return (
