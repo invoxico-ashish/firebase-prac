@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import ContextSignin from "./components/ContextSignin";
 import SignInGoogle from "./components/SignInGoogle";
 import FileStore from "./components/FileStore";
+import PutDataRealtimeDb from "./components/PutDataRealtimeDb";
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 import { app } from "./Firebase";
 
@@ -24,7 +25,8 @@ function App() {
       <>
         {/* <ContextSignin /> */}
         {/* <SignInGoogle /> */}
-        <FileStore />
+        {/* <FileStore /> */}
+        <PutDataRealtimeDb />
       </>
     );
   }
